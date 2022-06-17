@@ -1,8 +1,4 @@
-
-#output "vpc_id" {
-    #value = module.myvpc.vpc
+output "vpc" {
+    value = aws_vpc.main.id
   
-#}
-
-
-
+}

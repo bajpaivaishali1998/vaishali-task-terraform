@@ -11,13 +11,14 @@ variable "vpc_tag" {
     type = string
   
 }
+
 # Creating Public Subnets in VPC..................................
 variable "public_subnet_cidr" {
     type = string
   
 }
 variable "true_val" {
-  type = bool
+  type = string
 
 }
 variable "public_availability_zone" {
@@ -34,7 +35,7 @@ variable "private_subnet_cidr" {
   
 }
 variable "false_val" {
-    type = bool
+    type = string
   
 }
 variable "private_availability_zone" {
@@ -94,12 +95,21 @@ variable "security_group_tag" {
   type = string
   
 }
-variable "ingress" {
-  type = map(any)
-  
-}
-variable "egress" {
-  type = map(any)
-  
-}
 
+variable "egress" {
+  type = map(object({
+    port = number
+    protocol = string
+    cidr_block = list(string)
+  }))
+}
+  variable "ingress"{
+    type = map(object({
+      port = number
+      protocol = string
+      cidr_block = list(string)
+      description = string
+    }))
+  }
+  
+  
